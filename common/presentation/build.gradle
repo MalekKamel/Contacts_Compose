@@ -1,0 +1,57 @@
+apply from: "$rootDir/${GradleName.commonAndroidLib}"
+
+android {
+    // This configuration enables using @JvmDefault annotation with Kotlin
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+        freeCompilerArgs = ['-Xjvm-default=compatibility']
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildFeatures {
+        compose true
+
+        // Disable unused AGP features
+        buildConfig false
+        aidl false
+        renderScript false
+        resValues false
+        shaders false
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion Libs.compose.version
+    }
+}
+
+dependencies {
+    api project(AppModule.data)
+
+    implementation Libs.androidX.appCompat
+    implementation Libs.androidX.coreKtx
+    api Libs.androidX.recyclerView
+    api Libs.androidX.paging
+    implementation Libs.androidX.lifeCycle
+    api Libs.androidX.constraintLayout
+
+    api Libs.androidX.ViewModelExt
+
+    api Libs.sha.bulletin
+    api Libs.sha.navigator
+    api Libs.sha.coroutineRequester
+
+    api Libs.androidX.swiperefreshlayout
+
+    api Libs.androidX.navigation_ui_ktx
+    api Libs.androidX.navigation_fragment_ktx
+
+    api Libs.compose.layout
+    api Libs.compose.material
+    api Libs.compose.materialIconsExtended
+    api Libs.compose.tooling
+    api Libs.compose.runtime
+    api Libs.compose.runtimeLivedata
+}

@@ -1,0 +1,41 @@
+apply from: "$rootDir/${GradleName.commonAndroidLib}"
+
+android {
+    buildTypes {
+
+        release {
+            buildConfigField("String", "API_BASE_URL", "\"${Config.baseUrlProd}\"")
+        }
+
+        debug {
+            buildConfigField("String", "API_BASE_URL", "\"${Config.baseUrlDev}\"")
+        }
+    }
+}
+
+dependencies {
+    api project(AppModule.core)
+
+    api Libs.retrofit.converter
+    api Libs.retrofit.runtime
+
+    api Libs.square.okHttp_runtime
+    api Libs.square.okHttp_interceptor
+
+    api Libs.sha.modelMapper
+
+    api Libs.androidX.room_runtime
+    kapt Libs.androidX.room_compiler
+    api Libs.androidX.room_ktx
+
+    api Libs.androidX.preference
+
+    implementation Libs.androidX.workManager
+    implementation Libs.androidX.concurrentFutures
+
+    testImplementation TestLibs.androidX.kotlinx_coroutine_test
+    testImplementation TestLibs.androidX.core_testing
+    testImplementation TestLibs.mockito_core
+    testImplementation TestLibs.mockito_kotlin
+    testImplementation TestLibs.junit
+}

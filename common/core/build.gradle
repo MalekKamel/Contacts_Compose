@@ -1,0 +1,13 @@
+apply from: "$rootDir/${GradleName.commonAndroidLib}"
+
+dependencies {
+    api Libs.androidX.appCompat
+    api Libs.androidX.core
+    implementation Libs.androidX.lifeCycleCommonJava8
+
+    api Libs.materialDesign.materialDesign
+    api Libs.square.picasso
+
+    api Libs.koin.android
+    api Libs.koin.workManager
+}

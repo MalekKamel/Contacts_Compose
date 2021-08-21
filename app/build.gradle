@@ -1,0 +1,55 @@
+apply plugin: Plugins.androidApplication
+apply from: "$rootDir/${GradleName.common}"
+
+
+android {
+
+    defaultConfig {
+        applicationId "com.contacts.app"
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            testCoverageEnabled true
+        }
+
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    buildFeatures {
+        compose true
+
+        // Disable unused AGP features
+        buildConfig false
+        aidl false
+        renderScript false
+        resValues false
+        shaders false
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion Libs.compose.version
+    }
+}
+
+dependencies {
+    implementation project(AppModule.presentation)
+    implementation project(AppModule.data)
+
+    testImplementation TestLibs.androidX.kotlinx_coroutine_test
+    testImplementation TestLibs.androidX.core_testing
+    testImplementation TestLibs.mockito_core
+    testImplementation TestLibs.mockito_kotlin
+    testImplementation TestLibs.junit
+
+}
