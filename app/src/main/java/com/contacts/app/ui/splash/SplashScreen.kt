@@ -13,31 +13,33 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import app.common.presentation.extension.supportWideScreen
+import app.common.presentation.mvvm.AppScreen
+import app.common.presentation.mvvm.ScreenHost
 
-@Composable
-fun SplashScreen() {
-    Surface(modifier = Modifier.supportWideScreen()) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(
-                    color = Color.White
-                ),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                "Contacts",
-                modifier = Modifier,
-                color = Color.Black,
-                fontSize = 50.sp
-            )
+class SplashScreen(
+    override val host: ScreenHost<SplashViewModel, Route>,
+) : AppScreen<SplashViewModel, SplashScreen.Route> {
+    sealed class Route
+
+    @Composable
+    override fun Content() {
+        Surface(modifier = Modifier.supportWideScreen()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = Color.White
+                    ),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    "Contacts",
+                    modifier = Modifier,
+                    color = Color.Black,
+                    fontSize = 50.sp
+                )
+            }
         }
     }
-}
-
-@Preview
-@Composable
-fun SplashScreenPreview() {
-    SplashScreen()
 }

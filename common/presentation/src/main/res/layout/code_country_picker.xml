@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/codePicker"
+        android:layout_width="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_height="wrap_content"
+        app:ccpDialog_initialScrollToSelection="true"
+        app:ccpDialog_showFlag="true"
+        app:ccp_useFlagEmoji="true"
+        app:ccp_autoFormatNumber="true"
+        app:ccp_countryAutoDetectionPref="SIM_ONLY"
+        app:ccp_countryPreference="sa"
+        android:layout_gravity="center"
+        app:ccp_contentColor="@color/cobalt_three"
+        app:ccp_defaultNameCode="sa"
+        app:ccp_rememberLastSelection="true"
+        app:ccp_showFlag="false"
+        app:ccp_showNameCode="false"
+        android:paddingStart="4dp" />
+
+</LinearLayout>

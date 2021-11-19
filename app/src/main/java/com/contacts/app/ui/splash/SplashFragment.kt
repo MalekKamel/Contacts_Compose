@@ -2,22 +2,20 @@ package com.contacts.app.ui.splash
 
 import android.os.Handler
 import android.os.Looper
-import androidx.compose.runtime.Composable
-import androidx.navigation.fragment.findNavController
+import app.common.presentation.compose.navigator.AppNavigator
 import app.common.presentation.ui.frag.AppFragment
-import com.contacts.app.R
+import com.contacts.app.ui.home.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by Sha on 7/28/20.
  */
 
-class SplashFragment : AppFragment<SplashViewModel>() {
+class SplashFragment :
+    AppFragment<SplashViewModel, SplashScreen.Route>() {
     override val vm: SplashViewModel by viewModel()
-
-    override val screen: @Composable () -> Unit = {
-        SplashScreen()
-    }
+    override val screen = SplashScreen(this)
 
     override fun onResume() {
         super.onResume()
@@ -27,11 +25,14 @@ class SplashFragment : AppFragment<SplashViewModel>() {
     private fun setupFlow() {
         Handler(Looper.getMainLooper()).postDelayed({
             showHome()
-        }, 2000)
+        }, TimeUnit.SECONDS.toMillis(2))
     }
 
     private fun showHome() {
-        findNavController().navigate(R.id.action_splashFrag_to_homeFrag)
+        AppNavigator(requireActivity()).replace(HomeFragment(), addToBackStack = false)
+    }
+
+    override fun navigate(to: SplashScreen.Route) {
     }
 
 }

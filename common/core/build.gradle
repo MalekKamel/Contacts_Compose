@@ -1,5 +1,32 @@
 apply from: "$rootDir/${GradleName.commonAndroidLib}"
 
+android {
+
+    defaultConfig {
+        minSdkVersion Config.minSdk
+        targetSdkVersion Config.targetSdk
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            debuggable false
+        }
+
+        debug {
+        }
+
+        staging {
+        }
+
+        internal {
+            debuggable true
+            minifyEnabled false
+        }
+    }
+}
+
 dependencies {
     api Libs.androidX.appCompat
     api Libs.androidX.core
@@ -10,4 +37,18 @@ dependencies {
 
     api Libs.koin.android
     api Libs.koin.workManager
+    api Libs.jakeWharton.threeTen
+
+    api Libs.maps.gmsLocation
+    api Libs.maps.mapsKtx
+    api Libs.maps.places
+
+    api Libs.androidX.swiperefreshlayout
+
+    api Libs.androidX.navigation_ui_ktx
+    api Libs.androidX.navigation_fragment_ktx
+
+    api (Libs.socketIoLibs.socket) {
+        exclude group: 'org.json', module: 'json'
+    }
 }

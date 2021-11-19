@@ -5,12 +5,15 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.annotation.StringRes
+import app.common.core.date.AppThreeTenDate
 
 open class CoreApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
+        AppThreeTenDate.setup(this)
+        registerActivityLifecycleCallbacks(AppActivityLifecycleCallbacks())
     }
 
     companion object {

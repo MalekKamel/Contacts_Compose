@@ -1,22 +1,18 @@
 package com.contacts.app.ui.main
 
 import android.os.Bundle
-import androidx.navigation.fragment.NavHostFragment
+import app.common.presentation.compose.navigator.AppNavigator
 import app.common.presentation.navigation.NavHostActivity
-import com.contacts.app.R
+import com.contacts.app.ui.splash.SplashFragment
 
 /**
  * Created by Sha on 7/28/20.
  */
 
 class MainActivity : NavHostActivity() {
-    override var navGraph: Int = R.navigation.nav_graph_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val host = NavHostFragment.create(navGraph)
-        supportFragmentManager.beginTransaction()
-                .replace(R.id.navHost, host)
-                .commit()
+        AppNavigator(this).replace(SplashFragment(), addToBackStack = false)
     }
 }

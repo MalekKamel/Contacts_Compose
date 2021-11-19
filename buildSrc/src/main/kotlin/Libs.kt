@@ -1,10 +1,10 @@
 object Versions {
     const val appCompat = "1.3.1"
-    const val core = "1.0.0-beta01"
+    const val core = "1.6.0"
     const val recyclerView = "1.0.0"
-    const val navigation = "2.2.0"
+    const val navigation = "2.3.5"
 
-    const val materialDesign = "1.0.0-rc01"
+    const val materialDesign = "1.4.0"
     const val picasso = "2.71828"
     const val constraintLayout = "2.0.0-alpha2"
     const val retrofit = "2.6.1"
@@ -15,28 +15,46 @@ object Versions {
     const val formValidator = "2.1.0"
     const val navigator = "1.7.0"
     const val modelMapper = "0.1.0"
-    const val coreKtx = "1.1.0"
+    const val coreKtx = "1.6.0"
     const val paging = "2.0.0-rc01"
     const val swiperefreshlayout = "1.0.0"
     const val bulletin = "0.1.3"
     const val coroutineRequester = "0.5.0"
-    const val ViewModelExt = "2.2.0"
+    const val ViewModelExt = "2.3.1"
 
     const val room = "2.4.0-alpha04"
     const val preference = "1.1.1"
 
     const val workManager = "2.7.0-alpha04"
     const val concurrentFutures = "1.1.0"
+
+    const val pinView = "v1.4"
+    const val ccp = "2.4.4"
+
+    //Google Maps
+    const val gmsLocation = "18.0.0"
+    const val gmsKtx = "2.2.0"
+    const val places = "2.4.0"
+
+    //Coroutines
+    const val coroutinesCore = "1.5.0"
 }
 
 object Libs {
     val koin = KoinLibs
     val compose = ComposeLibs
     val androidX = AndroidXLibs
+    val socketIoLibs = SocketIoLibs
     val sha = ShaLibs
     val retrofit = RetrofitLibs
     val square = SquareLibs
     val materialDesign = MaterialDesignLibs
+    val textFields = TextFieldLibs
+    val jakeWharton = JakeWhartonLibs
+    val phoneValidation = PhoneValidation
+    val maps = GoogleMaps
+    val coroutines = CoroutinesLibs
+    val adjust = AdjustLibs
 
     object KoinLibs {
         private const val version = "3.1.0"
@@ -80,12 +98,8 @@ object Libs {
     }
 
     object ComposeLibs {
-        const val snapshot = ""
         const val version = "1.0.1"
-
-        @get:JvmStatic
-        val snapshotUrl: String
-            get() = "https://androidx.dev/snapshots/builds/$snapshot/artifacts/repository/"
+        const val constraintComposeVersion = "1.0.0-beta02"
 
         const val foundation = "androidx.compose.foundation:foundation:$version"
         const val layout = "androidx.compose.foundation:foundation-layout:$version"
@@ -97,6 +111,11 @@ object Libs {
         const val tooling = "androidx.compose.ui:ui-tooling:$version"
         const val test = "androidx.compose.test:test-core:$version"
         const val uiTest = "androidx.compose.ui:ui-test:$version"
+        const val constraintCompose =
+            "androidx.constraintlayout:constraintlayout-compose:$constraintComposeVersion"
+
+        const val coilVersion = "1.3.1"
+        const val coil = "io.coil-kt:coil-compose:$coilVersion"
     }
 
     object ShaLibs {
@@ -127,6 +146,45 @@ object Libs {
         const val okHttp_interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
     }
 
+    object TextFieldLibs {
+        const val pinView = "com.github.GoodieBag:Pinview:${Versions.pinView}"
+        const val ccp = "com.hbb20:ccp:${Versions.ccp}"
+    }
+
+    object JakeWhartonLibs {
+        private const val threeTenVersion = "1.2.2"
+
+        const val threeTen = "com.jakewharton.threetenabp:threetenabp:${threeTenVersion}"
+    }
+
+    object PhoneValidation {
+        const val version = "8.12.13"
+
+        const val libPhoneNumber = "io.michaelrocks:libphonenumber-android:${version}"
+    }
+
+    object GoogleMaps {
+        const val gmsLocation =
+            "com.google.android.gms:play-services-location:${Versions.gmsLocation}"
+        const val mapsKtx = "com.google.maps.android:maps-ktx:${Versions.gmsKtx}"
+        const val places = "com.google.android.libraries.places:places:${Versions.places}"
+    }
+
+    object CoroutinesLibs {
+        const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesCore}"
+    }
+
+    object SocketIoLibs {
+        private const val version = "1.0.1"
+        const val socket = "io.socket:socket.io-client:$version"
+    }
+
+    object AdjustLibs {
+        private const val version = "4.28.2"
+        const val adjust_android = "com.adjust.sdk:adjust-android:$version"
+        const val adjust_web_bridge = "com.adjust.sdk:adjust-android-webbridge:$version"
+        const val install_referrer = "com.android.installreferrer:installreferrer:2.2"
+    }
 }
 
 object TestLibs {
@@ -144,6 +202,7 @@ object TestLibs {
         const val mockito_kotlin = "2.2.0"
         const val koin = "3.1.0"
     }
+
     val androidX = AndroidXLibs
 
     object AndroidXLibs {

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import app.common.data.DataManager
 import app.common.data.model.ContactItem
-import app.common.presentation.ui.vm.AppViewModel
+import app.common.presentation.mvvm.vm.AppViewModel
 import com.sha.coroutinerequester.RequestOptions
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

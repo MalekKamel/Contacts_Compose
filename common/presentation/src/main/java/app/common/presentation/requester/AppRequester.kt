@@ -6,7 +6,7 @@ import com.sha.coroutinerequester.RequestOptions
 
 class AppRequester(presentable: Presentable) {
     private val requester: CoroutineRequester by lazy {
-        CoroutineRequester.create(presentable)
+        CoroutineRequester.create(ApiErrorContract::class.java, presentable)
     }
 
     suspend fun request(

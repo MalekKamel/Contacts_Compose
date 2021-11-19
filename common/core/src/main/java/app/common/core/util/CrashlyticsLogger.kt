@@ -4,6 +4,7 @@ package app.common.core.util
  * Created by Sha on 10/15/17.
  */
 
+// TODO: integrate with Crashlytics
 object CrashlyticsLogger {
 
     fun logAndPrint(throwable: Throwable) {
@@ -18,6 +19,6 @@ object CrashlyticsLogger {
     }
 }
 
-fun Exception.reportAndPrint() {
+fun Throwable.reportAndPrint() {
     CrashlyticsLogger.logAndPrint(this)
 }

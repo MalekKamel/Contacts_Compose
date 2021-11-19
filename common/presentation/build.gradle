@@ -1,6 +1,25 @@
 apply from: "$rootDir/${GradleName.commonAndroidLib}"
 
 android {
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            debuggable false
+        }
+
+        debug {
+        }
+
+        staging {
+        }
+
+        internal {
+            debuggable true
+            minifyEnabled false
+        }
+    }
+
     // This configuration enables using @JvmDefault annotation with Kotlin
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8
@@ -30,23 +49,9 @@ android {
 dependencies {
     api project(AppModule.data)
 
-    implementation Libs.androidX.appCompat
-    implementation Libs.androidX.coreKtx
-    api Libs.androidX.recyclerView
-    api Libs.androidX.paging
-    implementation Libs.androidX.lifeCycle
-    api Libs.androidX.constraintLayout
-
-    api Libs.androidX.ViewModelExt
-
     api Libs.sha.bulletin
     api Libs.sha.navigator
     api Libs.sha.coroutineRequester
-
-    api Libs.androidX.swiperefreshlayout
-
-    api Libs.androidX.navigation_ui_ktx
-    api Libs.androidX.navigation_fragment_ktx
 
     api Libs.compose.layout
     api Libs.compose.material
@@ -54,4 +59,14 @@ dependencies {
     api Libs.compose.tooling
     api Libs.compose.runtime
     api Libs.compose.runtimeLivedata
+    api Libs.compose.constraintCompose
+    api Libs.compose.coil
+
+    api Libs.textFields.pinView
+    api Libs.textFields.ccp
+    api Libs.sha.formValidator
+    api Libs.sha.navigator
+    api Libs.phoneValidation.libPhoneNumber
+
+    api Libs.coroutines.core
 }

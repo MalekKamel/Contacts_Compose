@@ -4,18 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.runtime.Composable
+import androidx.annotation.DrawableRes
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import app.common.presentation.theme.AppTheme
-import app.common.presentation.ui.activity.BaseActivity
+import androidx.fragment.app.FragmentActivity
+import app.common.presentation.R
+import app.common.presentation.compose.theme.AppTheme
+import app.common.presentation.flashbar.AppFlashBar
+import app.common.presentation.mvvm.AppScreen
+import app.common.presentation.mvvm.ScreenHost
+import app.common.presentation.mvvm.vm.AppViewModel
 import app.common.presentation.ui.view.ViewInterface
-import app.common.presentation.ui.vm.AppViewModel
 
-abstract class AppFragment<VM : AppViewModel> : Fragment(), ViewInterface {
-    abstract val screen: @Composable () -> Unit
-    abstract val vm: VM
+abstract class AppFragment<VM : AppViewModel, ROUTE> : Fragment(),
+    ScreenHost<VM, ROUTE>,
+    ViewInterface {
+
+    abstract val screen: AppScreen<VM, ROUTE>
+    abstract override val vm: VM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,31 +29,69 @@ abstract class AppFragment<VM : AppViewModel> : Fragment(), ViewInterface {
     }
 
     private fun setupVm() {
-        vm.toggleLoading.observe(this, Observer { show ->
-            if (show) {
-                showLoadingDialog()
-                return@Observer
-            }
-            dismissLoadingDialogs()
-        })
-        vm.showError.observe(this) { showErrorInFlashBar(it) }
-        vm.showErrorRes.observe(this) { showErrorInFlashBar(it) }
+        vm.setupWith(this)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return ComposeView(requireContext()).apply {
             setContent {
                 AppTheme {
-                    screen()
+                    screen.Content()
                 }
             }
         }
     }
 
-    override fun activity(): BaseActivity? = activity as? BaseActivity
+    override fun onResume() {
+        super.onResume()
+        screen.onFragmentResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        screen.onFragmentDestroy()
+    }
+
+    override fun activity(): FragmentActivity? = activity
+
+    override fun fragment(): AppFragment<*, *> {
+        return this
+    }
+
+    override fun popBackStack() {
+        activity?.supportFragmentManager?.popBackStack()
+    }
+
+    override fun showErrorInFlashBar(
+        contentRes: Int,
+        @DrawableRes icon: Int?,
+        duration: Long
+    ) {
+        AppFlashBar.show(
+            activity(),
+            contentRes,
+            icon,
+            duration,
+            R.color.error
+        )
+    }
+
+    override fun showFlashBar(
+        content: String,
+        @DrawableRes icon: Int?,
+        duration: Long,
+        backgroundColor: Int,
+    ) {
+        AppFlashBar.show(
+            activity(),
+            content,
+            icon,
+            duration
+        )
+    }
 
 }

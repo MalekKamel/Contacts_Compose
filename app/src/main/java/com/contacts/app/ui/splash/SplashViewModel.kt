@@ -1,7 +1,7 @@
 package com.contacts.app.ui.splash
 
 import app.common.data.DataManager
-import app.common.presentation.ui.vm.AppViewModel
+import app.common.presentation.mvvm.vm.AppViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
