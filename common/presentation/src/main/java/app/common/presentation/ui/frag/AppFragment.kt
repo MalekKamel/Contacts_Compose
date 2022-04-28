@@ -8,6 +8,7 @@ import androidx.annotation.DrawableRes
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import app.common.core.runOnMainThread
 import app.common.presentation.R
 import app.common.presentation.compose.theme.AppTheme
 import app.common.presentation.flashbar.AppFlashBar
@@ -71,13 +72,31 @@ abstract class AppFragment<VM : AppViewModel, ROUTE> : Fragment(),
         @DrawableRes icon: Int?,
         duration: Long
     ) {
-        AppFlashBar.show(
-            activity(),
-            contentRes,
-            icon,
-            duration,
-            R.color.error
-        )
+        runOnMainThread {
+            AppFlashBar.show(
+                activity(),
+                contentRes,
+                icon,
+                duration,
+                R.color.error
+            )
+        }
+    }
+
+    override fun showErrorInFlashBar(
+        content: String,
+        @DrawableRes icon: Int?,
+        duration: Long,
+    ) {
+        runOnMainThread {
+            AppFlashBar.show(
+                activity(),
+                content,
+                icon,
+                duration,
+                R.color.error
+            )
+        }
     }
 
     override fun showFlashBar(

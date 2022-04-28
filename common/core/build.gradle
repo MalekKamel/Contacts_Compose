@@ -19,11 +19,6 @@ android {
 
         staging {
         }
-
-        internal {
-            debuggable true
-            minifyEnabled false
-        }
     }
 }
 

@@ -1,5 +1,8 @@
 package app.common.presentation.mvvm
 
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -16,7 +19,12 @@ interface AppScreen<VM : AppViewModel, ROUTE> {
     val vm: VM
         get() = host.vm
 
-    fun navigate(to: ROUTE) = host.navigate(to)
+    fun navigate(to: ROUTE) {
+        Handler(Looper.getMainLooper()).post {
+            host.navigate(to)
+        }
+    }
+
     fun popBackStack() {
         vm.toggleLoading.postValue(false)
         host.popBackStack()
@@ -63,4 +71,11 @@ interface AppScreen<VM : AppViewModel, ROUTE> {
 
     fun onFragmentResume() {}
     fun onFragmentDestroy() {}
+
+    fun requestResult(
+        key: FragmentResultKeyType,
+        onResult: (Bundle) -> Unit
+    ) {
+        host.requestResult(key = key, onResult = onResult)
+    }
 }

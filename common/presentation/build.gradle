@@ -13,11 +13,6 @@ android {
 
         staging {
         }
-
-        internal {
-            debuggable true
-            minifyEnabled false
-        }
     }
 
     // This configuration enables using @JvmDefault annotation with Kotlin

@@ -5,7 +5,6 @@ import app.common.core.BuildConfig
 enum class BuildType(val value: String) {
     Debug("debug"),
     Staging("staging"),
-    Internal("internal"),
     Release("release");
 
     companion object {
