@@ -98,7 +98,7 @@ object Libs {
     }
 
     object ComposeLibs {
-        const val version = "1.0.1"
+        const val version = "1.2.1"
         const val constraintComposeVersion = "1.0.0-beta02"
 
         const val foundation = "androidx.compose.foundation:foundation:$version"

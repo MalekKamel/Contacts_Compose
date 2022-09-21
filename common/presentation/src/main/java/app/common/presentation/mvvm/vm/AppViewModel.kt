@@ -53,10 +53,6 @@ open class AppViewModel(val dm: DataManager) : ViewModel() {
         AppRequester(presentable)
     }
 
-    fun disableLoading() {
-        toggleLoading.postValue(false)
-    }
-
     /**
      * Each request should call this function to apply Coroutines and
      * handle exceptions

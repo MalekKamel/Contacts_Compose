@@ -37,31 +37,31 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion Libs.compose.version
+        kotlinCompilerExtensionVersion "1.3.1"
     }
 }
 
 dependencies {
     api project(AppModule.data)
 
-    api Libs.sha.bulletin
-    api Libs.sha.navigator
-    api Libs.sha.coroutineRequester
+    api "com.github.ShabanKamell:Bulletin:0.1.3"
+    api "com.github.ShabanKamell:Navigator:1.7.0"
+    api "com.github.ShabanKamell:CoroutineRequester:0.5.0"
 
-    api Libs.compose.layout
-    api Libs.compose.material
-    api Libs.compose.materialIconsExtended
-    api Libs.compose.tooling
-    api Libs.compose.runtime
-    api Libs.compose.runtimeLivedata
-    api Libs.compose.constraintCompose
-    api Libs.compose.coil
+    api "androidx.compose.foundation:foundation-layout:1.2.1"
 
-    api Libs.textFields.pinView
-    api Libs.textFields.ccp
-    api Libs.sha.formValidator
-    api Libs.sha.navigator
-    api Libs.phoneValidation.libPhoneNumber
+    api "androidx.compose.material:material:1.2.1"
+    api "androidx.compose.material:material-icons-extended:1.2.1"
+    api "androidx.compose.ui:ui-tooling:1.2.1"
+    api "androidx.compose.runtime:runtime:1.2.1"
+    api "androidx.compose.runtime:runtime-livedata:1.2.1"
 
-    api Libs.coroutines.core
+    api "io.coil-kt:coil-compose:1.3.1"
+    api "com.hbb20:ccp:2.4.4"
+    api "com.hbb20:ccp:2.4.4"
+    api "com.github.ShabanKamell:FormValidator:2.1.0"
+    api "com.github.ShabanKamell:Navigator:1.7.0"
+    api "io.michaelrocks:libphonenumber-android:8.12.13"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+
 }
