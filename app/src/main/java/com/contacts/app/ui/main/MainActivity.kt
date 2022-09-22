@@ -1,20 +1,40 @@
 package com.contacts.app.ui.main
 
 import android.os.Bundle
-import app.common.presentation.R
-import app.common.presentation.compose.navigator.AppNavigator
-import app.common.presentation.ui.activity.BaseActivity
-import com.contacts.app.ui.splash.SplashFragment
+import androidx.activity.compose.setContent
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.fragment.app.FragmentActivity
+import androidx.navigation.compose.rememberNavController
+import app.common.presentation.compose.theme.AppTheme
+import com.contacts.app.shared.navigation.AppNavHost
 
 /**
  * Created by Sha on 7/28/20.
  */
 
-class MainActivity : BaseActivity() {
-    override var layoutId: Int = R.layout.activity_nav_host
+class MainActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppNavigator(this).replace(SplashFragment(), addToBackStack = false)
+        setContent {
+            AppTheme {
+                Surface(color = MaterialTheme.colors.background) {
+                    Content()
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun Content() {
+        val navController = rememberNavController()
+        remember {
+            AppNavHost(this, navController)
+        }
+            .Setup()
     }
 }
+

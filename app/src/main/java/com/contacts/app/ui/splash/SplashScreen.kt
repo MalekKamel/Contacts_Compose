@@ -1,28 +1,38 @@
 package com.contacts.app.ui.splash
 
+import android.os.Handler
+import android.os.Looper
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
-import app.common.presentation.extension.fillMax
+import app.common.presentation.compose.screen.NavControllerHost
 import app.common.presentation.mvvm.AppScreen
-import app.common.presentation.mvvm.ScreenHost
+import com.contacts.app.shared.screen.Screen
 
 class SplashScreen(
-    override val host: ScreenHost<SplashViewModel, Route>,
-) : AppScreen<SplashViewModel, SplashScreen.Route> {
-    sealed class Route
+    override val host: NavControllerHost,
+) : AppScreen<SplashViewModel>() {
+    override val vm = SplashViewModel.build()
 
     @Composable
     override fun Content() {
-        Surface(modifier = Modifier.fillMax()) {
+        LaunchedEffect(true) {
+            Handler(Looper.getMainLooper()).postDelayed({
+                navigate(Screen.Contacts)
+            }, 1000)
+        }
+
+        Surface(modifier = Modifier.fillMaxSize()) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -34,7 +44,6 @@ class SplashScreen(
             ) {
                 Text(
                     "Contacts",
-                    modifier = Modifier,
                     color = Color.Black,
                     fontSize = 50.sp
                 )

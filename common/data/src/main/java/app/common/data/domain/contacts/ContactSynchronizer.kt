@@ -52,4 +52,12 @@ class ContactSynchronizer(
         return ContactSyncResult(newItems, modifiedItems, deletedItems)
     }
 
+    companion object {
+        fun build(): ContactSynchronizer {
+            return ContactSynchronizer(
+                providerDataSrc = ContactsProviderDataSrc(ContactsRetriever.build()),
+                localSrc = ContactsLocalDataSrc.build()
+            )
+        }
+    }
 }

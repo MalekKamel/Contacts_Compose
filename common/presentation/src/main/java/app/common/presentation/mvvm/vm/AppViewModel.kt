@@ -2,23 +2,25 @@ package app.common.presentation.mvvm.vm
 
 import android.os.Handler
 import android.os.Looper
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.snapshotFlow
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.common.data.Repos
+import app.common.presentation.mvvm.AppScreen
 import app.common.presentation.requester.AppRequester
-import app.common.presentation.ui.fragment.AppFragment
 import com.sha.coroutinerequester.Presentable
 import com.sha.coroutinerequester.RequestOptions
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-open class AppViewModel(val dm: Repos) : ViewModel() {
-    val toggleLoading = MutableLiveData<Boolean>()
-    val showError = MutableLiveData<String>()
-    val showErrorRes = MutableLiveData<Int>()
+open class AppViewModel : ViewModel() {
+    var toggleLoading = mutableStateOf(false)
+    val showError = mutableStateOf("")
+    val showErrorRes = mutableStateOf(0)
 
     private val requester: AppRequester by lazy {
         val presentable = object : Presentable {
@@ -47,7 +49,7 @@ open class AppViewModel(val dm: Repos) : ViewModel() {
             }
 
             override fun onHandleErrorFailed(throwable: Throwable) {
-                showError.postValue(throwable.message)
+                showError.value = throwable.message ?: ""
             }
         }
         AppRequester(presentable)
@@ -67,23 +69,19 @@ open class AppViewModel(val dm: Repos) : ViewModel() {
         }
     }
 
-    fun setupWith(appFragment: AppFragment<*, *>?) {
-        if (appFragment == null) return
-        toggleLoading.observe(appFragment, Observer { show ->
-            if (show) {
-                appFragment.showLoadingDialog()
-                return@Observer
+    fun setupWith(screen: AppScreen<*>) {
+        snapshotFlow { showError.value }
+            .drop(1)
+            .onEach { e ->
+                screen.showError(e)
             }
-            appFragment.activity()?.runOnUiThread {
-                appFragment.dismissLoadingDialogs()
+            .launchIn(viewModelScope)
+        snapshotFlow { showErrorRes.value }
+            .drop(1)
+            .onEach { e ->
+                screen.showError(e)
             }
-        })
-        showError.observe(appFragment) {
-            appFragment.activity()?.runOnUiThread {
-                appFragment.showErrorInFlashBar(it)
-            }
-        }
-        showErrorRes.observe(appFragment) { appFragment.showErrorInFlashBar(it) }
+            .launchIn(viewModelScope)
     }
 
 }

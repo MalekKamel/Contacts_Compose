@@ -45,4 +45,14 @@ class ContactsRepo(
         localSrc.delete(contacts)
     }
 
+    companion object {
+        fun build(): ContactsRepo {
+            return ContactsRepo(
+                localSrc = ContactsLocalDataSrc.build(),
+                providerDataSrc = ContactsProviderDataSrc.build(),
+                contactSynchronizer = ContactSynchronizer.build()
+            )
+        }
+    }
+
 }

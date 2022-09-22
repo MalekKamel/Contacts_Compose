@@ -1,5 +1,7 @@
 package app.common.data.domain.contacts
 
+import androidx.room.Room
+import app.common.core.app.CoreApp
 import app.common.data.db.ContactsDatabase
 import app.common.data.model.ContactEntityMapper
 import app.common.data.model.ContactItem
@@ -31,4 +33,16 @@ class ContactsLocalDataSrc(private val db: ContactsDatabase) : ContactsLocalData
         db.contactDao().delete(ListMapper(ContactEntityMapper()).map(contacts))
     }
 
+    companion object {
+        fun build(): ContactsLocalDataSrc {
+            return ContactsLocalDataSrc(
+                Room.databaseBuilder(
+                    CoreApp.context,
+                    ContactsDatabase::class.java,
+                    "ContactsDatabase"
+                )
+                    .build()
+            )
+        }
+    }
 }

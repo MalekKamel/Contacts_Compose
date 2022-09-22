@@ -1,31 +1,23 @@
 package com.contacts.app.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.compose.runtime.mutableStateListOf
 import app.common.data.Repos
 import app.common.data.model.ContactItem
 import app.common.presentation.mvvm.vm.AppViewModel
 import com.sha.coroutinerequester.RequestOptions
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.dsl.module
 
 /**
  * Created by Sha on 7/28/20.
  */
 
-val homeModule = module {
-    viewModel { HomeViewModel(get()) }
-}
-
-class HomeViewModel(repos: Repos) : AppViewModel(repos) {
-    private val _contacts = MutableLiveData<List<ContactItem>>()
-    val contacts: LiveData<List<ContactItem>> = _contacts
-    val onSync = MutableLiveData<Boolean>()
+class HomeViewModel(private val repos: Repos) : AppViewModel() {
+    val contacts = mutableStateListOf<ContactItem>()
 
     fun loadContacts() {
         request {
-            val response = dm.contacts.contacts()
-            _contacts.postValue(response)
+            val response = repos.contacts.contacts()
+            contacts.clear()
+            contacts.addAll(response)
         }
     }
 
@@ -34,8 +26,13 @@ class HomeViewModel(repos: Repos) : AppViewModel(repos) {
             .showLoading(false)
             .build()
         request(options) {
-            val response = dm.contacts.sync()
-            onSync.postValue(response)
+            repos.contacts.sync()
+        }
+    }
+
+    companion object {
+        fun build(): HomeViewModel {
+            return HomeViewModel(Repos.build())
         }
     }
 }

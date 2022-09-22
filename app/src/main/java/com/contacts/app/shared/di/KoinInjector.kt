@@ -7,11 +7,10 @@ import org.koin.core.context.startKoin
 
 object KoinInjector {
 
-    fun inject(context: Context){
+    fun inject(context: Context) {
         startKoin {
             androidContext(context)
         }
-        injectAppModule()
         injectDataModule()
     }
 

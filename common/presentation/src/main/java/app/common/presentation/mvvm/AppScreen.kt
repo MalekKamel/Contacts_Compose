@@ -1,81 +1,103 @@
 package app.common.presentation.mvvm
 
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import androidx.annotation.ColorRes
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
+import android.content.Context
 import androidx.compose.runtime.Composable
-import app.common.core.request_result.fragment_result.FragmentResultKeyType
-import app.common.core.request_result.fragment_result.FragmentResultParamBuilder
+import androidx.compose.runtime.LaunchedEffect
+import androidx.fragment.app.FragmentActivity
+import app.common.core.runOnMainThread
 import app.common.presentation.R
+import app.common.presentation.compose.ComposeCircularProgress
+import app.common.presentation.compose.screen.NavControllerHost
+import app.common.presentation.compose.screen.ScreenRoute
+import app.common.presentation.flashbar.AppFlashBar
 import app.common.presentation.mvvm.vm.AppViewModel
-import com.sha.bulletin.BulletinConfig
 import java.util.concurrent.TimeUnit
 
-interface AppScreen<VM : AppViewModel, ROUTE> {
-    val host: ScreenHost<VM, ROUTE>
-    val vm: VM
-        get() = host.vm
+abstract class AppScreen<VM : AppViewModel> {
+    abstract val vm: VM
+    abstract val host: NavControllerHost
 
-    fun navigate(to: ROUTE) {
-        Handler(Looper.getMainLooper()).post {
-            host.navigate(to)
+    @Composable
+    protected abstract fun Content()
+
+    @Composable
+    fun ScreenContent() {
+        LaunchedEffect(true) {
+            setupVm()
+        }
+        Content()
+        ShowLoaderProgress()
+    }
+
+    private fun setupVm() {
+        vm.setupWith(this)
+    }
+
+    fun activity() = host.activity
+    fun context(): Context = host.activity.baseContext
+
+    fun navigate(route: ScreenRoute) = host.navigate(route)
+    fun navigate(route: String) = host.navigate(route)
+
+    @Composable
+    private fun ShowLoaderProgress() {
+        if (vm.toggleLoading.value) {
+            ComposeCircularProgress().Content()
         }
     }
 
-    fun popBackStack() {
-        vm.toggleLoading.postValue(false)
-        host.popBackStack()
+    fun showLoading(message: String) {
+
     }
 
-    fun activity() = host.activity()
-    fun fragment() = host.fragment()
-    fun finish() = host.finish()
-    fun setFragmentResult(
-        key: FragmentResultKeyType,
-        params: FragmentResultParamBuilder.() -> Unit
-    ) {
-        host.setFragmentResult(key, params)
+    fun showError(message: String) {
+        Reporter.showError(message, activity())
     }
 
-    fun showErrorInFlashBar(
-        @StringRes contentRes: Int,
-        @DrawableRes icon: Int? = null,
-        duration: Long = BulletinConfig.flashBarDuration,
-    ) {
-        host.showErrorInFlashBar(
-            contentRes = contentRes,
-            icon = icon,
-            duration = duration
-        )
+    fun showError(message: Int) {
+        Reporter.showError(message, activity())
     }
 
-    fun showFlashBar(
-        content: String,
-        @DrawableRes icon: Int? = null,
-        duration: Long = TimeUnit.SECONDS.toMillis(2),
-        @ColorRes backgroundColor: Int = R.color.green
-    ) {
-        host.showFlashBar(
-            content = content,
-            icon = icon,
-            duration = duration,
-            backgroundColor = backgroundColor
-        )
+    fun showSuccess(message: String) {
+        Reporter.showSuccess(message, activity())
+    }
+}
+
+object Reporter {
+
+    fun showError(message: String, activity: FragmentActivity) {
+        runOnMainThread {
+            AppFlashBar.show(
+                activity,
+                message,
+                null,
+                TimeUnit.SECONDS.toMillis(2),
+                R.color.red
+            )
+        }
     }
 
-    @Composable
-    fun Content()
+    fun showError(message: Int, activity: FragmentActivity) {
+        runOnMainThread {
+            AppFlashBar.show(
+                activity,
+                message,
+                null,
+                TimeUnit.SECONDS.toMillis(2),
+                R.color.red
+            )
+        }
+    }
 
-    fun onFragmentResume() {}
-    fun onFragmentDestroy() {}
-
-    fun requestResult(
-        key: FragmentResultKeyType,
-        onResult: (Bundle) -> Unit
-    ) {
-        host.requestResult(key = key, onResult = onResult)
+    fun showSuccess(message: String, activity: FragmentActivity) {
+        runOnMainThread {
+            AppFlashBar.show(
+                activity,
+                message,
+                null,
+                TimeUnit.SECONDS.toMillis(2),
+                R.color.green
+            )
+        }
     }
 }

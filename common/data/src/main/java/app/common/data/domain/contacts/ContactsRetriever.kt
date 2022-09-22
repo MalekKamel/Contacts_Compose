@@ -4,6 +4,7 @@ import android.content.ContentResolver
 import android.database.Cursor
 import android.net.Uri
 import android.provider.ContactsContract
+import app.common.core.app.CoreApp
 import app.common.data.extension.int
 import app.common.data.extension.string
 import app.common.data.model.ContactItem
@@ -228,6 +229,12 @@ class ContactsRetriever(private val contentResolver: ContentResolver) {
             ContactsContract.CommonDataKinds.Phone.TYPE_WORK -> "Work"
             ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE -> "Mobile"
             else -> ""
+        }
+    }
+
+    companion object {
+        fun build(): ContactsRetriever {
+            return ContactsRetriever(CoreApp.context.contentResolver)
         }
     }
 }

@@ -12,4 +12,10 @@ class ContactsProviderDataSrc(private val contactsRetriever: ContactsRetriever) 
     override suspend fun all(): List<ContactItem> {
         return contactsRetriever.retrieve()
     }
+
+    companion object {
+        fun build(): ContactsProviderDataSrc {
+            return ContactsProviderDataSrc(ContactsRetriever.build())
+        }
+    }
 }
