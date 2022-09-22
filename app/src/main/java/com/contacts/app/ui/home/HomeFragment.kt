@@ -3,7 +3,7 @@ package com.contacts.app.ui.home
 import android.Manifest
 import android.os.Bundle
 import app.common.core.request_result.permission.PermissionRequester
-import app.common.presentation.ui.frag.AppFragment
+import app.common.presentation.ui.fragment.AppFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**

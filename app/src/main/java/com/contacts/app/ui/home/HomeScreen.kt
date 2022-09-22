@@ -11,15 +11,11 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import app.common.data.model.ContactItem
-import app.common.presentation.extension.supportWideScreen
+import app.common.presentation.extension.fillMax
 import app.common.presentation.mvvm.AppScreen
 import app.common.presentation.mvvm.ScreenHost
-import com.contacts.app.ui.splash.SplashViewModel
-import org.koin.java.KoinJavaComponent
 
 
 class HomeScreen(
@@ -29,7 +25,7 @@ class HomeScreen(
 
     @Composable
     override fun Content() {
-        Surface(modifier = Modifier.supportWideScreen()) {
+        Surface(modifier = Modifier.fillMax()) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()

@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.ui.graphics.Color
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import app.common.core.request_result.fragment_result.FragmentResultKeyType
@@ -14,9 +13,7 @@ import app.common.core.request_result.fragment_result.FragmentResultRequester
 import app.common.presentation.R
 import app.common.presentation.compose.navigator.AppNavigator
 import app.common.presentation.mvvm.vm.AppViewModel
-import app.common.presentation.ui.frag.AppFragment
-import com.sha.bulletin.BulletinConfig
-import com.sha.bulletin.flashbar.StandardFlashbar
+import app.common.presentation.ui.fragment.AppFragment
 import java.util.concurrent.TimeUnit
 
 interface ScreenHost<VM : AppViewModel, ROUTE> {
@@ -56,7 +53,7 @@ interface ScreenHost<VM : AppViewModel, ROUTE> {
         content: String,
         @DrawableRes icon: Int? = null,
         duration: Long = TimeUnit.SECONDS.toMillis(2),
-        @ColorRes backgroundColor: Int = R.color.quantum_googgreen
+        @ColorRes backgroundColor: Int = R.color.green
     )
 
     fun setFragmentResult(

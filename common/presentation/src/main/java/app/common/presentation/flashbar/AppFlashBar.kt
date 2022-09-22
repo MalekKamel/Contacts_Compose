@@ -17,7 +17,7 @@ object AppFlashBar {
         content: String,
         @DrawableRes icon: Int? = null,
         duration: Long = TimeUnit.SECONDS.toMillis(2),
-        @ColorRes backgroundColor: Int = R.color.quantum_googgreen
+        @ColorRes backgroundColor: Int = R.color.green
     ) {
         if (activity == null) return
         val builder = Flashbar.Builder(activity)
@@ -35,7 +35,7 @@ object AppFlashBar {
         @StringRes contentRes: Int,
         @DrawableRes icon: Int? = null,
         duration: Long = TimeUnit.SECONDS.toMillis(2),
-        @ColorRes backgroundColor: Int = R.color.quantum_googgreen
+        @ColorRes backgroundColor: Int = R.color.green
     ) {
         if (activity == null) return
         val builder = Flashbar.Builder(activity)

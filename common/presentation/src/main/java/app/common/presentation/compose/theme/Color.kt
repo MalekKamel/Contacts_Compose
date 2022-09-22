@@ -1,7 +1,7 @@
 package app.common.presentation.compose.theme
 
 import androidx.compose.ui.graphics.Color
-import app.common.presentation.hexColor
+import app.common.presentation.extension.hexColor
 
 
 object AppColor {

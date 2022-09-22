@@ -16,26 +16,24 @@ android {
 dependencies {
     api project(AppModule.core)
 
-    api Libs.retrofit.converter
-    api Libs.retrofit.runtime
+    api "com.squareup.retrofit2:retrofit:2.9.0"
+    api "com.squareup.retrofit2:converter-gson:2.9.0"
 
-    api Libs.square.okHttp_runtime
-    api Libs.square.okHttp_interceptor
-
-    api Libs.sha.modelMapper
+    api "com.squareup.okhttp3:okhttp:5.0.0-alpha.2"
+    api "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2"
+    api "com.github.ShabanKamell:ModelMapper:0.1.0"
 
     api "androidx.room:room-runtime:2.4.3"
     kapt "androidx.room:room-compiler:2.4.3"
     api "androidx.room:room-ktx:2.4.3"
+    api "androidx.preference:preference:1.2.0"
+    api "androidx.work:work-runtime:2.7.1"
+    api "androidx.concurrent:concurrent-futures:1.1.0"
 
-    api Libs.androidX.preference
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "org.mockito:mockito-core:3.5.13"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation "pl.pragmatists:JUnitParams:1.1.1"
 
-    implementation Libs.androidX.workManager
-    implementation Libs.androidX.concurrentFutures
-
-    testImplementation TestLibs.androidX.kotlinx_coroutine_test
-    testImplementation TestLibs.androidX.core_testing
-    testImplementation TestLibs.mockito_core
-    testImplementation TestLibs.mockito_kotlin
-    testImplementation TestLibs.junit
 }

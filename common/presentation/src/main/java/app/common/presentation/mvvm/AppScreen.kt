@@ -56,7 +56,7 @@ interface AppScreen<VM : AppViewModel, ROUTE> {
         content: String,
         @DrawableRes icon: Int? = null,
         duration: Long = TimeUnit.SECONDS.toMillis(2),
-        @ColorRes backgroundColor: Int = R.color.quantum_googgreen
+        @ColorRes backgroundColor: Int = R.color.green
     ) {
         host.showFlashBar(
             content = content,

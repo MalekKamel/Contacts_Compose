@@ -17,15 +17,6 @@ val MontserratFontFamily = FontFamily(
     )
 )
 
-//val RobotoFont = FontFamily(
-//    listOf(
-//        Font(R.font.),
-//        Font(R.font.montserrat_medium, FontWeight.Medium),
-//        Font(R.font.montserrat_semibold, FontWeight.SemiBold)
-//    )
-//)
-
-
 val Typography = Typography(
     defaultFontFamily = MontserratFontFamily,
     h1 = TextStyle(
@@ -96,10 +87,10 @@ val Typography = Typography(
 )
 
 val Roboto = FontFamily(
-    Font(R.font.roboto_light , FontWeight.Light),
-    Font(R.font.roboto_regular , FontWeight.Normal),
-    Font(R.font.roboto_medium , FontWeight.Medium),
-    Font(R.font.rboto_bold , FontWeight.Bold)
+    Font(R.font.roboto_light, FontWeight.Light),
+    Font(R.font.roboto_regular, FontWeight.Normal),
+    Font(R.font.roboto_medium, FontWeight.Medium),
+    Font(R.font.rboto_bold, FontWeight.Bold)
 )
 
 val Helvetica = FontFamily(
@@ -108,11 +99,11 @@ val Helvetica = FontFamily(
 
 val AppTypography = Typography(
     defaultFontFamily = Roboto,
-   h1 = TextStyle(
-       fontWeight = FontWeight.W300,
-       fontSize = 24.sp,
-       letterSpacing = (1).sp
-   ),
+    h1 = TextStyle(
+        fontWeight = FontWeight.W300,
+        fontSize = 24.sp,
+        letterSpacing = (1).sp
+    ),
     h2 = TextStyle(
         fontWeight = FontWeight.W600,
         fontSize = 18.sp,

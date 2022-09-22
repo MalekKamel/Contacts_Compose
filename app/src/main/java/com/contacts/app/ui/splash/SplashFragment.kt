@@ -3,7 +3,7 @@ package com.contacts.app.ui.splash
 import android.os.Handler
 import android.os.Looper
 import app.common.presentation.compose.navigator.AppNavigator
-import app.common.presentation.ui.frag.AppFragment
+import app.common.presentation.ui.fragment.AppFragment
 import com.contacts.app.ui.home.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit

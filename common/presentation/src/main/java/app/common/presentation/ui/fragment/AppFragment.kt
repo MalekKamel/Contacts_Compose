@@ -1,4 +1,4 @@
-package app.common.presentation.ui.frag
+package app.common.presentation.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater

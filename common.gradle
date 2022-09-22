@@ -1,5 +1,4 @@
 apply plugin: Plugins.kotlinAndroid
-apply plugin: Plugins.kotlinAndroidExtensions
 apply plugin: Plugins.kotlinKapt
 
 android {
@@ -14,12 +13,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
-
     }
 
     compileOptions {
-        targetCompatibility Config.javaVersion
-        sourceCompatibility Config.javaVersion
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 
     packagingOptions {
@@ -40,19 +38,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    testImplementation TestLibs.junit
-    testImplementation TestLibs.androidX.junit
-    testImplementation TestLibs.androidX.espressoCore
-    testImplementation TestLibs.koin_test
-    testImplementation TestLibs.jUnitParams
-    testImplementation TestLibs.kotlinTestJunit5
-    testImplementation TestLibs.kotlinTestExtKoin
-
-    androidTestApi(TestLibs.espressoCore, {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-
 }

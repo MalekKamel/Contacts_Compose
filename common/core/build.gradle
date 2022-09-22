@@ -23,27 +23,10 @@ android {
 }
 
 dependencies {
-    api Libs.androidX.appCompat
-    api Libs.androidX.core
-    implementation Libs.androidX.lifeCycleCommonJava8
-
-    api Libs.materialDesign.materialDesign
-    api Libs.square.picasso
-
-    api Libs.koin.android
-    api Libs.koin.workManager
-    api Libs.jakeWharton.threeTen
-
-    api Libs.maps.gmsLocation
-    api Libs.maps.mapsKtx
-    api Libs.maps.places
-
-    api Libs.androidX.swiperefreshlayout
-
-    api Libs.androidX.navigation_ui_ktx
-    api Libs.androidX.navigation_fragment_ktx
-
-    api (Libs.socketIoLibs.socket) {
-        exclude group: 'org.json', module: 'json'
-    }
+    api "androidx.appcompat:appcompat:1.5.1"
+    api "androidx.core:core:1.9.0"
+    api "com.google.android.material:material:1.6.1"
+    api "io.insert-koin:koin-android:3.1.0"
+    api 'androidx.fragment:fragment-ktx:1.5.3'
+    api "io.insert-koin:koin-androidx-workmanager:3.1.0"
 }

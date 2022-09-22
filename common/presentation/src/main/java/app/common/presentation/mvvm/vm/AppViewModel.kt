@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.common.data.DataManager
 import app.common.presentation.requester.AppRequester
-import app.common.presentation.ui.frag.AppFragment
+import app.common.presentation.ui.fragment.AppFragment
 import com.sha.coroutinerequester.Presentable
 import com.sha.coroutinerequester.RequestOptions
 import kotlinx.coroutines.Dispatchers

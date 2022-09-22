@@ -46,10 +46,10 @@ dependencies {
     implementation project(AppModule.presentation)
     implementation project(AppModule.data)
 
-    testImplementation TestLibs.androidX.kotlinx_coroutine_test
-    testImplementation TestLibs.androidX.core_testing
-    testImplementation TestLibs.mockito_core
-    testImplementation TestLibs.mockito_kotlin
-    testImplementation TestLibs.junit
 
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+    testImplementation "org.mockito:mockito-core:3.5.13"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation "pl.pragmatists:JUnitParams:1.1.1"
 }
