@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import app.common.data.DataManager
+import app.common.data.Repos
 import app.common.presentation.requester.AppRequester
 import app.common.presentation.ui.fragment.AppFragment
 import com.sha.coroutinerequester.Presentable
@@ -15,7 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-open class AppViewModel(val dm: DataManager) : ViewModel() {
+open class AppViewModel(val dm: Repos) : ViewModel() {
     val toggleLoading = MutableLiveData<Boolean>()
     val showError = MutableLiveData<String>()
     val showErrorRes = MutableLiveData<Int>()
