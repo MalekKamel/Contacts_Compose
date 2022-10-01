@@ -15,7 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-open class AppViewModel(val dm: Repos) : ViewModel() {
+open class AppVm(val dm: Repos) : ViewModel() {
     val toggleLoading = MutableLiveData<Boolean>()
     val showError = MutableLiveData<String>()
     val showErrorRes = MutableLiveData<Int>()

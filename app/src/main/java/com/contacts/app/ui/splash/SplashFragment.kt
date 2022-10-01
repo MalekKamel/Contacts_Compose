@@ -25,8 +25,8 @@ import java.util.concurrent.TimeUnit
  */
 
 class SplashFragment :
-    AppFragment<SplashViewModel>() {
-    override val vm: SplashViewModel by viewModel()
+    AppFragment<SplashVm>() {
+    override val vm: SplashVm by viewModel()
 
     @Composable
     override fun Content() {

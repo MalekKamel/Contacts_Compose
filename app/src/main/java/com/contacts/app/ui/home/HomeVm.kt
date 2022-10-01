@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import app.common.data.Repos
 import app.common.data.model.ContactItem
-import app.common.presentation.mvvm.vm.AppViewModel
+import app.common.presentation.mvvm.vm.AppVm
 import com.sha.coroutinerequester.RequestOptions
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -14,10 +14,10 @@ import org.koin.dsl.module
  */
 
 val homeModule = module {
-    viewModel { HomeViewModel(get()) }
+    viewModel { HomeVm(get()) }
 }
 
-class HomeViewModel(repos: Repos) : AppViewModel(repos) {
+class HomeVm(repos: Repos) : AppVm(repos) {
     private val _contacts = MutableLiveData<List<ContactItem>>()
     val contacts: LiveData<List<ContactItem>> = _contacts
     val onSync = MutableLiveData<Boolean>()

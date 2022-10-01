@@ -24,8 +24,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Created by Sha on 7/28/20.
  */
 
-class HomeFragment : AppFragment<HomeViewModel>() {
-    override val vm: HomeViewModel by viewModel()
+class HomeFragment : AppFragment<HomeVm>() {
+    override val vm: HomeVm by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

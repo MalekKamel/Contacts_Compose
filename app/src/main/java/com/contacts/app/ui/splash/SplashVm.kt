@@ -1,7 +1,7 @@
 package com.contacts.app.ui.splash
 
 import app.common.data.Repos
-import app.common.presentation.mvvm.vm.AppViewModel
+import app.common.presentation.mvvm.vm.AppVm
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -10,7 +10,7 @@ import org.koin.dsl.module
  */
 
 val splashModule = module {
-    viewModel { SplashViewModel(get()) }
+    viewModel { SplashVm(get()) }
 }
 
-class SplashViewModel(dataManager: Repos) : AppViewModel(dataManager)
+class SplashVm(dataManager: Repos) : AppVm(dataManager)

@@ -13,11 +13,11 @@ import app.common.core.runOnMainThread
 import app.common.presentation.R
 import app.common.presentation.compose.theme.AppTheme
 import app.common.presentation.flashbar.AppFlashBar
-import app.common.presentation.mvvm.vm.AppViewModel
+import app.common.presentation.mvvm.vm.AppVm
 import app.common.presentation.progress_dialog.AppProgressDialog
 
 
-abstract class AppFragment<VM : AppViewModel> : Fragment() {
+abstract class AppFragment<VM : AppVm> : Fragment() {
     abstract val vm: VM
     private var progressDialog: Dialog? = null
 
