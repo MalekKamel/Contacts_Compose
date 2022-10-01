@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 import app.common.presentation.compose.navigator.AppNavigator
 import app.common.presentation.extension.fillMax
-import app.common.presentation.ui.fragment.AppFragment
+import app.common.presentation.fragment.AppFragment
 import com.contacts.app.ui.home.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.concurrent.TimeUnit

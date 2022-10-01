@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import app.common.data.Repos
 import app.common.presentation.requester.AppRequester
-import app.common.presentation.ui.fragment.AppFragment
+import app.common.presentation.fragment.AppFragment
 import com.sha.coroutinerequester.Presentable
 import com.sha.coroutinerequester.RequestOptions
 import kotlinx.coroutines.Dispatchers
@@ -67,19 +67,19 @@ open class AppViewModel(val dm: Repos) : ViewModel() {
         }
     }
 
-    fun setupWith(appFragment: AppFragment<*, *>?) {
+    fun setupWith(appFragment: AppFragment<*>?) {
         if (appFragment == null) return
         toggleLoading.observe(appFragment, Observer { show ->
             if (show) {
-                appFragment.showLoadingDialog()
+                appFragment.showLoading()
                 return@Observer
             }
-            appFragment.activity()?.runOnUiThread {
-                appFragment.dismissLoadingDialogs()
+            appFragment.activity?.runOnUiThread {
+                appFragment.dismissLoading()
             }
         })
         showError.observe(appFragment) {
-            appFragment.activity()?.runOnUiThread {
+            appFragment.activity?.runOnUiThread {
                 appFragment.showErrorInFlashBar(it)
             }
         }

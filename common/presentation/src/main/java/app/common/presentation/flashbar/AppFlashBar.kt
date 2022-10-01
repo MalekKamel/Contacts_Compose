@@ -6,8 +6,6 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.FragmentActivity
 import app.common.presentation.R
 import com.andrognito.flashbar.Flashbar
-import com.sha.bulletin.flashbar.StandardFlashbar
-import com.sha.bulletin.showBulletin
 import java.util.concurrent.TimeUnit
 
 object AppFlashBar {
@@ -27,7 +25,7 @@ object AppFlashBar {
             .enableSwipeToDismiss()
             .backgroundColorRes(backgroundColor)
         if (icon != null) builder.icon(icon)
-        show(activity, builder)
+        builder.show()
     }
 
     fun show(
@@ -44,17 +42,9 @@ object AppFlashBar {
             .duration(duration)
             .enableSwipeToDismiss()
             .backgroundColorRes(backgroundColor)
+
         if (icon != null) builder.icon(icon)
-        show(activity, builder)
+        builder.show()
     }
 
-    fun show(
-        activity: FragmentActivity?,
-        builder: Flashbar.Builder,
-        options: StandardFlashbar.Options = StandardFlashbar.Options.default()
-    ) {
-        if (activity == null) return
-        val bulletin = StandardFlashbar.create(builder, options)
-        showBulletin(bulletin, activity)
-    }
 }

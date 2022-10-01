@@ -3,7 +3,7 @@ package com.contacts.app.ui.main
 import android.os.Bundle
 import app.common.presentation.R
 import app.common.presentation.compose.navigator.AppNavigator
-import app.common.presentation.ui.activity.BaseActivity
+import app.common.presentation.activity.BaseActivity
 import com.contacts.app.ui.splash.SplashFragment
 
 /**

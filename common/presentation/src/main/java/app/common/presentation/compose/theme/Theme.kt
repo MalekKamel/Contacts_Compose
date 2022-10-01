@@ -3,18 +3,18 @@ package app.common.presentation.compose.theme
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
-//    val colors = if (darkTheme) {
-//        DarkThemeColors
-//    } else {
-//        LightThemeColors
-//    }
+fun AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+    val colors = if (darkTheme) {
+        // TODO: add dark theme colors
+        LightThemeColors
+    } else {
+        LightThemeColors
+    }
     LightThemeColors
     MaterialTheme(
         colors = colors,
@@ -38,20 +38,6 @@ val LightThemeColors = lightColors(
     error = Red800,
     onError = Color.White
 )
-
-//val DarkThemeColors = darkColors(
-//    primary = Purple300,
-//    primaryVariant = Purple600,
-//    onPrimary = Color.Black,
-//    secondary = Color.Black,
-//    onSecondary = Color.White,
-//    background = Color.Black,
-//    onBackground = Color.White,
-//    surface = Color.Black,
-//    onSurface = Color.White,
-//    error = Red300,
-//    onError = Color.Black
-//)
 
 val Colors.snackbarAction: Color
     @Composable

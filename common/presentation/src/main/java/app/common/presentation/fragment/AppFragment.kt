@@ -1,5 +1,6 @@
-package app.common.presentation.ui.fragment
+package app.common.presentation.fragment
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,12 @@ import app.common.presentation.R
 import app.common.presentation.compose.theme.AppTheme
 import app.common.presentation.flashbar.AppFlashBar
 import app.common.presentation.mvvm.vm.AppViewModel
-import app.common.presentation.ui.view.ViewInterface
+import app.common.presentation.progress_dialog.AppProgressDialog
 
-abstract class AppFragment<VM : AppViewModel> : Fragment(),
-    ViewInterface {
 
+abstract class AppFragment<VM : AppViewModel> : Fragment() {
     abstract val vm: VM
+    private var progressDialog: Dialog? = null
 
     @Composable
     abstract fun Content()
@@ -50,34 +51,22 @@ abstract class AppFragment<VM : AppViewModel> : Fragment(),
         activity?.supportFragmentManager?.popBackStack()
     }
 
-    fun showErrorInFlashBar(
-        contentRes: Int,
-        @DrawableRes icon: Int?,
-        duration: Long
-    ) {
+    fun showErrorInFlashBar(contentRes: Int) {
         val activity = activity ?: return
         runOnMainThread {
             AppFlashBar.show(
                 activity,
                 contentRes,
-                icon,
-                duration,
                 R.color.red_light
             )
         }
     }
 
-    fun showErrorInFlashBar(
-        content: String,
-        @DrawableRes icon: Int?,
-        duration: Long,
-    ) {
+    fun showErrorInFlashBar(content: String) {
         runOnMainThread {
             AppFlashBar.show(
                 activity,
                 content,
-                icon,
-                duration,
                 R.color.red_light
             )
         }
@@ -95,5 +84,15 @@ abstract class AppFragment<VM : AppViewModel> : Fragment(),
             duration
         )
     }
+
+    fun showLoading() {
+        val context = context ?: return
+        progressDialog = AppProgressDialog.show(context)
+    }
+
+    fun dismissLoading() {
+        progressDialog?.dismiss()
+    }
+
 
 }

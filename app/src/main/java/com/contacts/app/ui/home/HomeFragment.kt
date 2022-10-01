@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import app.common.core.request_result.permission.PermissionRequester
 import app.common.data.model.ContactItem
 import app.common.presentation.extension.fillMax
-import app.common.presentation.ui.fragment.AppFragment
+import app.common.presentation.fragment.AppFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
