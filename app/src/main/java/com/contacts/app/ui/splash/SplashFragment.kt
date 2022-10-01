@@ -2,7 +2,19 @@ package com.contacts.app.ui.splash
 
 import android.os.Handler
 import android.os.Looper
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.sp
 import app.common.presentation.compose.navigator.AppNavigator
+import app.common.presentation.extension.fillMax
 import app.common.presentation.ui.fragment.AppFragment
 import com.contacts.app.ui.home.HomeFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -13,9 +25,30 @@ import java.util.concurrent.TimeUnit
  */
 
 class SplashFragment :
-    AppFragment<SplashViewModel, SplashScreen.Route>() {
+    AppFragment<SplashViewModel>() {
     override val vm: SplashViewModel by viewModel()
-    override val screen = SplashScreen(this)
+
+    @Composable
+    override fun Content() {
+        Surface(modifier = Modifier.fillMax()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = Color.White
+                    ),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    "Contacts",
+                    modifier = Modifier,
+                    color = Color.Black,
+                    fontSize = 50.sp
+                )
+            }
+        }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -30,9 +63,6 @@ class SplashFragment :
 
     private fun showHome() {
         AppNavigator(requireActivity()).replace(HomeFragment(), addToBackStack = false)
-    }
-
-    override fun navigate(to: SplashScreen.Route) {
     }
 
 }

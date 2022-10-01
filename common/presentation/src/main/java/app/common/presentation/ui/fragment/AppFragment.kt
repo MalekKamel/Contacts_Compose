@@ -5,24 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.DrawableRes
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import app.common.core.runOnMainThread
 import app.common.presentation.R
 import app.common.presentation.compose.theme.AppTheme
 import app.common.presentation.flashbar.AppFlashBar
-import app.common.presentation.mvvm.AppScreen
-import app.common.presentation.mvvm.ScreenHost
 import app.common.presentation.mvvm.vm.AppViewModel
 import app.common.presentation.ui.view.ViewInterface
 
-abstract class AppFragment<VM : AppViewModel, ROUTE> : Fragment(),
-    ScreenHost<VM, ROUTE>,
+abstract class AppFragment<VM : AppViewModel> : Fragment(),
     ViewInterface {
 
-    abstract val screen: AppScreen<VM, ROUTE>
-    abstract override val vm: VM
+    abstract val vm: VM
+
+    @Composable
+    abstract fun Content()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,72 +40,56 @@ abstract class AppFragment<VM : AppViewModel, ROUTE> : Fragment(),
         return ComposeView(requireContext()).apply {
             setContent {
                 AppTheme {
-                    screen.Content()
+                    Content()
                 }
             }
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        screen.onFragmentResume()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        screen.onFragmentDestroy()
-    }
-
-    override fun activity(): FragmentActivity? = activity
-
-    override fun fragment(): AppFragment<*, *> {
-        return this
-    }
-
-    override fun popBackStack() {
+    fun popBackStack() {
         activity?.supportFragmentManager?.popBackStack()
     }
 
-    override fun showErrorInFlashBar(
+    fun showErrorInFlashBar(
         contentRes: Int,
         @DrawableRes icon: Int?,
         duration: Long
     ) {
+        val activity = activity ?: return
         runOnMainThread {
             AppFlashBar.show(
-                activity(),
+                activity,
                 contentRes,
                 icon,
                 duration,
-                R.color.error
+                R.color.red_light
             )
         }
     }
 
-    override fun showErrorInFlashBar(
+    fun showErrorInFlashBar(
         content: String,
         @DrawableRes icon: Int?,
         duration: Long,
     ) {
         runOnMainThread {
             AppFlashBar.show(
-                activity(),
+                activity,
                 content,
                 icon,
                 duration,
-                R.color.error
+                R.color.red_light
             )
         }
     }
 
-    override fun showFlashBar(
+    fun showFlashBar(
         content: String,
         @DrawableRes icon: Int?,
         duration: Long,
-        backgroundColor: Int,
     ) {
         AppFlashBar.show(
-            activity(),
+            activity,
             content,
             icon,
             duration
