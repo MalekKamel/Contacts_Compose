@@ -29,7 +29,7 @@ class SplashFragment :
     override val vm: SplashVm by viewModel()
 
     @Composable
-    override fun Content() {
+    override fun Screen() {
         Surface(modifier = Modifier.fillMax()) {
             Column(
                 modifier = Modifier

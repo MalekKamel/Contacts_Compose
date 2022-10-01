@@ -65,7 +65,7 @@ class HomeFragment : AppFragment<HomeVm>() {
     }
 
     @Composable
-    override fun Content() {
+    override fun Screen() {
         Surface(modifier = Modifier.fillMax()) {
             Column(
                 modifier = Modifier

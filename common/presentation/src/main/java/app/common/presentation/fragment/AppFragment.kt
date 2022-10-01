@@ -22,7 +22,7 @@ abstract class AppFragment<VM : AppVm> : Fragment() {
     private var progressDialog: Dialog? = null
 
     @Composable
-    abstract fun Content()
+    abstract fun Screen()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,7 @@ abstract class AppFragment<VM : AppVm> : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 AppTheme {
-                    Content()
+                    Screen()
                 }
             }
         }
