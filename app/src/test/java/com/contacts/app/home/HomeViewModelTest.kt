@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.common.data.Repos
 import app.common.data.util.MainCoroutineRule
 import app.common.data.util.getOrAwaitValue
-import com.contacts.app.ui.home.HomeViewModel
+import com.contacts.app.ui.home.HomeVm
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.MatcherAssert.assertThat
@@ -24,12 +24,12 @@ class HomeViewModelTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
-    lateinit var vm: HomeViewModel
+    lateinit var vm: HomeVm
 
     @Before
     fun setup() {
         val dm = Repos(FakeContactsRepo())
-        vm = HomeViewModel(dm)
+        vm = HomeVm(dm)
     }
 
     @Test

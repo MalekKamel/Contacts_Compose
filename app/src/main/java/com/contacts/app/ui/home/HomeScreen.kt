@@ -18,8 +18,8 @@ import app.common.presentation.mvvm.AppScreen
 
 class HomeScreen(
     override val host: NavControllerHost,
-) : AppScreen<HomeViewModel>() {
-    override val vm = HomeViewModel.build()
+) : AppScreen<HomeVm>() {
+    override val vm = HomeVm.build()
 
     @Composable
     override fun Content() {

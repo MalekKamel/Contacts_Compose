@@ -3,14 +3,14 @@ package com.contacts.app.ui.home
 import androidx.compose.runtime.mutableStateListOf
 import app.common.data.Repos
 import app.common.data.model.ContactItem
-import app.common.presentation.mvvm.vm.AppViewModel
+import app.common.presentation.mvvm.vm.AppVm
 import com.sha.coroutinerequester.RequestOptions
 
 /**
  * Created by Sha on 7/28/20.
  */
 
-class HomeViewModel(private val repos: Repos) : AppViewModel() {
+class HomeVm(private val repos: Repos) : AppVm() {
     val contacts = mutableStateListOf<ContactItem>()
 
     fun loadContacts() {
@@ -31,8 +31,8 @@ class HomeViewModel(private val repos: Repos) : AppViewModel() {
     }
 
     companion object {
-        fun build(): HomeViewModel {
-            return HomeViewModel(Repos.build())
+        fun build(): HomeVm {
+            return HomeVm(Repos.build())
         }
     }
 }

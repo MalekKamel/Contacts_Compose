@@ -10,10 +10,10 @@ import app.common.presentation.compose.ComposeCircularProgress
 import app.common.presentation.compose.screen.NavControllerHost
 import app.common.presentation.compose.screen.ScreenRoute
 import app.common.presentation.flashbar.AppFlashBar
-import app.common.presentation.mvvm.vm.AppViewModel
+import app.common.presentation.mvvm.vm.AppVm
 import java.util.concurrent.TimeUnit
 
-abstract class AppScreen<VM : AppViewModel> {
+abstract class AppScreen<VM : AppVm> {
     abstract val vm: VM
     abstract val host: NavControllerHost
 

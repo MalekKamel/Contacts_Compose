@@ -21,8 +21,8 @@ import com.contacts.app.shared.screen.Screen
 
 class SplashScreen(
     override val host: NavControllerHost,
-) : AppScreen<SplashViewModel>() {
-    override val vm = SplashViewModel.build()
+) : AppScreen<SplashVm>() {
+    override val vm = SplashVm.build()
 
     @Composable
     override fun Content() {

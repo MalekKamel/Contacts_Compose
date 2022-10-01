@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-open class AppViewModel : ViewModel() {
+open class AppVm : ViewModel() {
     var toggleLoading = mutableStateOf(false)
     val showError = mutableStateOf("")
     val showErrorRes = mutableStateOf(0)
