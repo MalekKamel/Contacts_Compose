@@ -11,7 +11,7 @@ import com.contacts.app.ui.splash.SplashFragment
  */
 
 class MainActivity : BaseActivity() {
-    override var layoutId: Int = R.layout.activity_nav_host
+    override var layoutId: Int = R.layout.activity_main
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
